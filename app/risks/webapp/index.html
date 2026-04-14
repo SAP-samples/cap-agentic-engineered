@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GL Transaction Risk Analysis</title>
+  <script>
+    window["sap-ushell-config"] = {
+      defaultRenderer: "fiori2",
+      renderers: {
+        fiori2: {
+          componentData: {
+            config: {
+              enableSearch: false,
+              enablePersonalization: false
+            }
+          }
+        }
+      },
+      applications: {
+        "risk-analysis": {
+          title: "GL Transaction Risk Analysis",
+          description: "Analyze GL transactions for financial risk using AI-powered inference",
+          additionalInformation: "SAPUI5.Component=risk.analysis",
+          applicationType: "URL",
+          url: "./",
+          navigationMode: "embedded"
+        }
+      }
+    };
+  </script>
+  <script id="sap-ushell-bootstrap"
+    src="https://sapui5.hana.ondemand.com/1.120.0/test-resources/sap/ushell/bootstrap/sandbox.js">
+  </script>
+  <script id="sap-ui-bootstrap"
+    src="https://sapui5.hana.ondemand.com/1.120.0/resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_horizon"
+    data-sap-ui-compatVersion="edge"
+    data-sap-ui-async="true"
+    data-sap-ui-frameOptions="allow"
+    data-sap-ui-preload="async"
+    data-sap-ui-libs="sap.ui.core, sap.ushell, sap.fe.templates"
+    data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+    data-sap-ui-flexibilityServices='[{"connector": "SessionStorageConnector"}]'>
+  </script>
+  <script>
+    sap.ui.getCore().attachInit(function () {
+      sap.ushell.Container.createRenderer().placeAt("content");
+    });
+  </script>
+</head>
+<body class="sapUiBody sapUiSizeCompact" id="content">
+</body>
+</html>

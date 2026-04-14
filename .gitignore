@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Environment / Credentials
+.env
+.env.local
+default-env.json
+
+# CAP build output
+gen/
+_out/
+
+# SQLite databases
+*.sqlite
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Internal tooling (keep .claude/skills/ for published skill examples)
+.claude/*
+!.claude/skills/

@@ -1,0 +1,69 @@
+{
+  "name": "financial-risk-analyzer",
+  "version": "1.0.0",
+  "description": "MCP-first Financial Risk Analyzer - GL transaction risk classification via Fiori Elements list report",
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "build": "cds build --production",
+    "test": "jest"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "impl": "@cap-js/sqlite",
+        "credentials": {
+          "url": "db.sqlite"
+        },
+        "[development]": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": ":memory:"
+          }
+        }
+      },
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "test-analyst": {
+              "password": "pass",
+              "roles": [
+                "authenticated-user",
+                "RiskAnalyst"
+              ]
+            },
+            "test-user": {
+              "password": "pass",
+              "roles": [
+                "authenticated-user"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@cap-js/sqlite": "^2.2.0",
+    "@sap/cds": "^9.8.2",
+    "express": "^5.2.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^0.4.1",
+    "@sap/cds-dk": "^9.8.4",
+    "jest": "^30.3.0",
+    "nock": "^14.0.11"
+  },
+  "overrides": {
+    "tar": "^7.5.11",
+    "axios": "^1.15.0",
+    "@tootallnate/once": "^3.0.1",
+    "@sap/cds-dk": {
+      "axios": "^1.15.0"
+    }
+  }
+}
