@@ -61,9 +61,7 @@
   "overrides": {
     "tar": "^7.5.11",
     "axios": "^1.15.0",
-    "@tootallnate/once": "^3.0.1",
-    "@sap/cds-dk": {
-      "axios": "^1.15.0"
-    }
+    "follow-redirects": "^1.16.0",
+    "@tootallnate/once": "^3.0.1"
   }
 }
