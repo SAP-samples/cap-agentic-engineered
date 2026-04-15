@@ -2,7 +2,7 @@ const cds = require('@sap/cds');
 const LOG = cds.log('risk-service');
 
 // Conditionally require predictor based on AI_CORE_MOCK env var
-const predictor = process.env.AI_CORE_MOCK === 'true'
+const predictor = process.env.AI_CORE_MOCK !== 'false'
   ? require('./lib/mock-predictor')
   : require('./lib/ai-core-client');
 
