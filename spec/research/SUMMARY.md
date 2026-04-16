@@ -161,7 +161,7 @@ Phases with standard patterns (skip research-phase):
 - Financial anomaly detection domain patterns -- synthesized from established enterprise software (SAP GR/IR, SAS AML)
 
 ### Project Context
-- `specs/PROJECT.md` -- project constraints and key decisions
+- `spec/PROJECT.md` -- project constraints and key decisions
 - `../prototype/USE_CASE.md` -- AI Core model contract, feature columns, anomaly classes
 - `../prototype/CLAUDE.md` -- agent instructions (contains criticality mapping bug documented above)
 

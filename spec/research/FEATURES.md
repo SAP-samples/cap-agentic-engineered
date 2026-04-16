@@ -192,7 +192,7 @@ Features to defer until the prototype proves its value.
 ## Sources
 
 - SAP CAP Fiori Elements documentation: https://cap.cloud.sap/docs/guides/uis/fiori (verified via WebFetch -- confirms `@UI.LineItem`, `@UI.SelectionFields`, `@UI.Criticality`, `@UI.DataFieldForAction`, `@UI.Chart`, variant management, export support)
-- Project context: `specs/PROJECT.md`, `../prototype/USE_CASE.md` (primary source for anomaly classes, feature columns, architecture, and scope decisions)
+- Project context: `spec/PROJECT.md`, `../prototype/USE_CASE.md` (primary source for anomaly classes, feature columns, architecture, and scope decisions)
 - Fiori Design Guidelines for List Report floorplan: https://experience.sap.com/fiori-design-web/list-report-floorplan-sap-fiori-element/ (redirects to https://www.sap.com/design-system/fiori-design-web/page-types/floorplans/list-report-floorplan-sap-fiori-element/ -- site rendering not accessible via WebFetch, referenced from training data: HIGH confidence on Fiori Elements capabilities as they are well-established and stable across SAPUI5 1.96+)
 - Financial anomaly detection domain patterns: Based on established enterprise software patterns (SAP GR/IR, SAS AML, general transaction monitoring systems). MEDIUM confidence -- synthesized from training data, not verified against current product releases.
 

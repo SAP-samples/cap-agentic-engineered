@@ -8,7 +8,7 @@ A reference application showing how AI coding agents produce higher-quality SAP 
 
 - A working Financial Risk Analyzer as concrete evidence of the methodology
 - A reusable [`CLAUDE.md`](CLAUDE.md) and [skills](skills/) that tell AI coding agents which MCP server to query for each SAP artifact — portable across Claude Code, Cursor, Copilot, and other MCP-capable tools
-- The [`specs/`](specs/) folder with the specs that drove the build — project roadmap, phased requirements, success criteria, and execution logs
+- The [`spec/`](spec/) folder with the specs that drove the build — project roadmap, phased requirements, success criteria, and execution logs
 - Test suite covering service behavior, annotations, i18n, and manifest correctness
 
 ## The Application
@@ -95,7 +95,7 @@ cap-agentic-engineered/
 |           +-- manifest.json  # Fiori Elements List Report configuration
 |           +-- ext/controller/ListReportExt.controller.js  # Custom action handler
 +-- test/                      # Unit and integration tests
-+-- specs/                     # GSD specs: roadmap, phased requirements, execution logs
++-- spec/                     # GSD specs: roadmap, phased requirements, execution logs
 +-- skills/                    # SAP MCP skills (auto-trigger on file patterns)
 ```
 
