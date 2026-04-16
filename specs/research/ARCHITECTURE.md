@@ -469,7 +469,7 @@ Phases 2 and 3 are parallelizable. This matches the 3-agent setup: orchestrator 
 - CAP Documentation: Fiori Elements Integration — https://cap.cloud.sap/docs/guides/uis/fiori
 - CAP Documentation: CDS Actions and Functions — https://cap.cloud.sap/docs/cds/cdl#actions
 - CAP Documentation: Initial Data / Mock Data — https://cap.cloud.sap/docs/guides/databases/initial-data
-- Project Context: `.planning/PROJECT.md`, `../prototype/USE_CASE.md`, `../prototype/CLAUDE.md`
+- Project Context: `specs/PROJECT.md`, `../prototype/USE_CASE.md`, `../prototype/CLAUDE.md`
 
 ---
 *Architecture research for: Financial Risk Analyzer (CAP + Fiori Elements + AI Core + BDC)*

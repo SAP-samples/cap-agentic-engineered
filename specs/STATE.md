@@ -18,7 +18,7 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-10)
+See: specs/PROJECT.md (updated 2026-03-10)
 
 **Core value:** Finance teams can see which GL transactions are risky in a single Fiori list report with one-click ML inference
 **Methodology:** MCP-first — every SAP artifact validated against SAP MCP servers before writing
@@ -110,4 +110,4 @@ None yet.
 
 Last session: 2026-03-12T01:02:16Z
 Stopped at: Completed 03-02-PLAN.md
-Resume file: .planning/phases/03-frontend-annotations-fiori-app/03-02-SUMMARY.md
+Resume file: specs/phases/03-frontend-annotations-fiori-app/03-02-SUMMARY.md

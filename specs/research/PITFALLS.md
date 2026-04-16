@@ -265,7 +265,7 @@ Phase 2 (Backend Development) for chunking logic; Phase 3 (Integration) for load
 
 ## Sources
 
-- Project specification: `.planning/PROJECT.md` -- project constraints and key decisions
+- Project specification: `specs/PROJECT.md` -- project constraints and key decisions
 - Use case definition: `../prototype/USE_CASE.md` -- AI Core model contract, feature columns, anomaly classes
 - Agent instructions: `../prototype/CLAUDE.md` -- criticality mapping (contains the 0/1/2 error), action handler patterns
 - CAP CDS documentation: https://cap.cloud.sap/docs/cds/cdl -- action/function definitions, bound vs unbound

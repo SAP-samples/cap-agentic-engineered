@@ -1,6 +1,6 @@
 # CLAUDE.md — MCP-Grounded SAP Development Guide
 
-This file configures AI coding agents (Claude Code, Copilot, Cursor, etc.) to query SAP MCP servers before writing SAP-specific code. It works in conjunction with the skills in [`.claude/skills/`](.claude/skills/) that automatically trigger MCP queries when the agent touches specific file types. Together, the CLAUDE.md provides the rules and the skills enforce them at the file level.
+This file configures AI coding agents (Claude Code, Copilot, Cursor, etc.) to query SAP MCP servers before writing SAP-specific code. It works in conjunction with the skills in [`skills/`](skills/) that automatically trigger MCP queries when the agent touches specific file types. Together, the CLAUDE.md provides the rules and the skills enforce them at the file level.
 
 It is a reusable pattern for any CAP + Fiori Elements project.
 
@@ -72,13 +72,13 @@ Always query the relevant MCP server before generating SAP-specific code. Trust 
 
 ## Skills: Automatic MCP Triggers
 
-The `.claude/skills/` directory contains skills that automatically activate when the agent edits matching file patterns. Each skill instructs the agent to query the correct MCP server before making changes:
+The `skills/` directory contains skills that automatically activate when the agent edits matching file patterns. Each skill instructs the agent to query the correct MCP server before making changes:
 
 | Skill | Triggers on | MCP Server |
 |-------|------------|------------|
-| [`sap-cap`](.claude/skills/sap-cap/SKILL.md) | `db/**/*.cds`, `srv/**/*.cds`, `srv/**/*.js` | `@cap-js/mcp-server` |
-| [`sap-fiori`](.claude/skills/sap-fiori/SKILL.md) | `app/**/*.cds`, `app/**/manifest.json` | `@sap-ux/fiori-mcp-server` |
-| [`sap-ui5`](.claude/skills/sap-ui5/SKILL.md) | `app/**/*.xml`, `app/**/ext/**/*.js` | `@ui5/mcp-server` |
+| [`sap-cap`](skills/sap-cap/SKILL.md) | `db/**/*.cds`, `srv/**/*.cds`, `srv/**/*.js` | `@cap-js/mcp-server` |
+| [`sap-fiori`](skills/sap-fiori/SKILL.md) | `app/**/*.cds`, `app/**/manifest.json` | `@sap-ux/fiori-mcp-server` |
+| [`sap-ui5`](skills/sap-ui5/SKILL.md) | `app/**/*.xml`, `app/**/ext/**/*.js` | `@ui5/mcp-server` |
 
 The CLAUDE.md defines the routing table and rules. The skills enforce them — when the agent touches a CDS file in `srv/`, the `sap-cap` skill fires and reminds it to query the CAP MCP server first.
 

@@ -73,7 +73,7 @@
 **State Management:**
 - No runtime state — this is a documentation and specification repository
 - Git branches track work-in-progress for reference architecture updates
-- `.planning/codebase/` contains AI-generated mapping documents (this file)
+- `specs/codebase/` contains AI-generated mapping documents (this file)
 
 ## Key Abstractions
 

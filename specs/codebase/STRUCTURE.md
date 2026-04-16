@@ -9,7 +9,7 @@ cap-agentic-engineered/
 ├── .claude/                   # Claude Code configuration
 ├── .git/                      # Git repository metadata
 ├── .hyperspace/               # Hyperspace PR bot configuration
-├── .planning/                 # AI-generated codebase analysis
+├── specs/                 # AI-generated codebase analysis
 │   └── codebase/              # Mapping documents (this file)
 ├── prototype/                 # Multi-agent prototype specification
 ├── ref-arch/                  # Reference architecture content
@@ -49,7 +49,7 @@ cap-agentic-engineered/
 - Contains: Permission policies for web fetch, bash commands, git operations
 - Key files: `settings.local.json`
 
-**`.planning/`:**
+**`specs/`:**
 - Purpose: AI-generated codebase mapping documents
 - Contains: `codebase/` subdirectory with analysis artifacts
 - Key files: This document (`STRUCTURE.md`) and `ARCHITECTURE.md`
@@ -97,8 +97,8 @@ cap-agentic-engineered/
 - `../prototype/USE_CASE.md`: Journal Entry Analyzer use case (problem, solution, BDC data products, views)
 
 **Analysis Artifacts:**
-- `.planning/codebase/ARCHITECTURE.md`: Architecture analysis (this document's companion)
-- `.planning/codebase/STRUCTURE.md`: This document
+- `specs/codebase/ARCHITECTURE.md`: Architecture analysis (this document's companion)
+- `specs/codebase/STRUCTURE.md`: This document
 
 ## Naming Conventions
 
@@ -110,7 +110,7 @@ cap-agentic-engineered/
 **Directories:**
 - Reference architecture sub-pages: `1-vibe-coding-with-cline/`, `2-accelerating-dev-with-claude-code/` (numbered, kebab-case)
 - Diagram subdirectories: `drawio/` (lowercase)
-- Tool configuration: `.claude/`, `.hyperspace/`, `.planning/` (hidden, lowercase)
+- Tool configuration: `.claude/`, `.hyperspace/`, `specs/` (hidden, lowercase)
 
 ## Where to Add New Code
 
@@ -142,7 +142,7 @@ cap-agentic-engineered/
 
 ## Special Directories
 
-**`.planning/`:**
+**`specs/`:**
 - Purpose: AI-generated codebase analysis documents for GSD command support
 - Generated: Yes (by `/gsd:map-codebase` command)
 - Committed: Yes (should be committed to provide context for future AI agents)
@@ -220,8 +220,8 @@ Stored in root `CLAUDE.md`, structured as:
 - Environment variables: `.env` (not committed)
 
 **Analysis:**
-- Architecture mapping: `.planning/codebase/ARCHITECTURE.md`
-- Structure mapping: `.planning/codebase/STRUCTURE.md`
+- Architecture mapping: `specs/codebase/ARCHITECTURE.md`
+- Structure mapping: `specs/codebase/STRUCTURE.md`
 
 ---
 
