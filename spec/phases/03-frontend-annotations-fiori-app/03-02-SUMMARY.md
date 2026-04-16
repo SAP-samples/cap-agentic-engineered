@@ -65,7 +65,7 @@ completed: 2026-03-11
 ## Accomplishments
 - Created ListReportExt.controller.js with onAnalyze handler using sap.ui.define plain object pattern (not ES6 class), busy indicator on inner table, OData V4 action invocation via bindContext/execute, ExtensionAPI.refresh() for table rebind, MessageBox.error with i18n-externalized fallback
 - Updated manifest.json with custom action `analyzeAction` referencing ListReportExt.onAnalyze, requiresSelection: false (action processes all loaded rows)
-- Removed DataFieldForAction from annotations.cds LineItem (replaced by custom action per CLAUDE.md proven pattern -- DataFieldForAction silently fails for unbound actions)
+- Removed DataFieldForAction from annotations.cds LineItem (replaced by custom action per AGENTS.md proven pattern -- DataFieldForAction silently fails for unbound actions)
 - Fixed index.html bootstrap to use ushell sandbox (was blank page with ComponentSupport alone)
 - All 90 tests pass, cds build succeeds
 
@@ -86,7 +86,7 @@ Additional fix commit:
 - `app/risks/webapp/index.html` - Replaced ComponentSupport bootstrap with ushell sandbox bootstrap (sap-ushell-config + sandbox.js) required for Fiori Elements rendering
 
 ## Decisions Made
-- **Custom action over DataFieldForAction:** Used manifest.json custom action pattern per CLAUDE.md and prototype experience. DataFieldForAction can silently fail for unbound actions -- button renders but clicks do nothing. Custom action is the proven reliable pattern.
+- **Custom action over DataFieldForAction:** Used manifest.json custom action pattern per AGENTS.md and prototype experience. DataFieldForAction can silently fail for unbound actions -- button renders but clicks do nothing. Custom action is the proven reliable pattern.
 - **ExtensionAPI.refresh() for table rebind:** Instead of manually looking up list binding by ID, used the ExtensionAPI.refresh() method which handles table rebinding across FE versions.
 - **No success toast:** Per locked decision, color-coded rows (via criticality) serve as the visual feedback after analysis. No MessageToast.show() on success.
 - **ushell sandbox bootstrap:** Fiori Elements requires the ushell container for proper rendering. Plain ComponentSupport bootstrap results in a blank page. Fixed with sap-ushell-config and sandbox.js loader.

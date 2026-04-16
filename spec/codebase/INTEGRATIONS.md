@@ -13,7 +13,7 @@
 
 **AI Proxy Layer:**
 - LiteLLM - OpenAI-compatible proxy to SAP AI Core
-  - Configuration: `litellm_config.yaml` (referenced in `CLAUDE.md`)
+  - Configuration: `litellm_config.yaml` (referenced in `AGENTS.md`)
   - Models mapped:
     - `claude-sonnet` → `sap_ai_core/anthropic--claude-4-sonnet`
     - `claude-opus` → `sap_ai_core/anthropic--claude-4-opus`
@@ -137,7 +137,7 @@
   - API access for automation
 
 **Multi-Agent Worktree Pattern:**
-- One worktree per agent (referenced in `../prototype/CLAUDE.md`)
+- One worktree per agent (referenced in `../prototype/AGENTS.md`)
 - Branch naming: `feature/<agent-role>`
 - Isolation: Each agent works in separate working directory
 - Coordination: Shared task lists and direct messaging between agents

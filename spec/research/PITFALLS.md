@@ -91,11 +91,11 @@ Phase 1 (Scaffolding) -- CDS entity definitions and mock data structure must be 
 ### Pitfall 4: Fiori Elements Criticality Annotation Misconfiguration
 
 **What goes wrong:**
-Fiori Elements uses `@UI.Criticality` or `@UI.DataPoint` with criticality to color-code values. The criticality values are specific integers defined in the OData vocabulary: 0 = neutral, 1 = negative (red), 2 = critical (orange/yellow), 3 = positive (green). The prototype CLAUDE.md defines criticality as `0 = positive/green, 1 = negative/red, 2 = critical/orange` -- but Fiori Elements interprets 0 as *neutral* (grey), not positive (green). If criticality 0 is used for "Normal" transactions, they show up grey instead of green.
+Fiori Elements uses `@UI.Criticality` or `@UI.DataPoint` with criticality to color-code values. The criticality values are specific integers defined in the OData vocabulary: 0 = neutral, 1 = negative (red), 2 = critical (orange/yellow), 3 = positive (green). The prototype AGENTS.md defines criticality as `0 = positive/green, 1 = negative/red, 2 = critical/orange` -- but Fiori Elements interprets 0 as *neutral* (grey), not positive (green). If criticality 0 is used for "Normal" transactions, they show up grey instead of green.
 
 **Why it happens:**
 - Confusion between `CriticalityType` values (0=Neutral, 1=Negative, 2=Critical, 3=Positive) and custom integer mappings
-- The comment in the prototype CLAUDE.md says `0 = positive/green` which contradicts the actual Fiori semantics
+- The comment in the prototype AGENTS.md says `0 = positive/green` which contradicts the actual Fiori semantics
 - Developer tests with a small dataset and does not notice the color discrepancy
 - `Criticality` can be applied as a static annotation or as a path to a property -- using the wrong approach causes it to be ignored silently
 
@@ -228,7 +228,7 @@ Phase 2 (Backend Development) for chunking logic; Phase 3 (Integration) for load
 ## "Looks Done But Isn't" Checklist
 
 - [ ] **Feature extraction:** Verify the array sent to AI Core has exactly 24 elements (per the USE_CASE.md numbered list) or 25 (per the prose) -- resolve this discrepancy before coding
-- [ ] **Criticality mapping:** Verify `Criticality: 3` is used for green (positive), not `Criticality: 0` which is grey (neutral) -- the prototype CLAUDE.md has this wrong
+- [ ] **Criticality mapping:** Verify `Criticality: 3` is used for green (positive), not `Criticality: 0` which is grey (neutral) -- the prototype AGENTS.md has this wrong
 - [ ] **Token refresh:** Verify that AI Core tokens are refreshed automatically, not just fetched once at startup -- test by running the app for >12 hours
 - [ ] **Action return type:** Verify the Fiori list report actually updates after "Analyze" -- not just that the action succeeds in the backend
 - [ ] **i18n completeness:** Verify all 11 risk classification labels and explanations are in `i18n.properties`, not hardcoded in JavaScript
@@ -267,7 +267,7 @@ Phase 2 (Backend Development) for chunking logic; Phase 3 (Integration) for load
 
 - Project specification: `spec/PROJECT.md` -- project constraints and key decisions
 - Use case definition: `../prototype/USE_CASE.md` -- AI Core model contract, feature columns, anomaly classes
-- Agent instructions: `../prototype/CLAUDE.md` -- criticality mapping (contains the 0/1/2 error), action handler patterns
+- Agent instructions: `../prototype/AGENTS.md` -- criticality mapping (contains the 0/1/2 error), action handler patterns
 - CAP CDS documentation: https://cap.cloud.sap/docs/cds/cdl -- action/function definitions, bound vs unbound
 - CAP remote services: https://cap.cloud.sap/docs/node.js/remote-services -- timeout configuration, CSRF handling (partial fetch; docs note incompleteness)
 - Fiori CriticalityType vocabulary: `com.sap.vocabularies.UI.v1.CriticalityType` (0=Neutral, 1=Negative, 2=Critical, 3=Positive) -- standard OData vocabulary definition

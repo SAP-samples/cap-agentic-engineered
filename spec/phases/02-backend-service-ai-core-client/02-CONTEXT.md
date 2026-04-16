@@ -84,7 +84,7 @@ A fully functional OData V4 service with a working AI Core inference pipeline th
 ## Specific Ideas
 
 - The `FEATURE_COLUMNS` constant already exists at `srv/lib/feature-columns.js` — feature extraction should import and iterate this, not duplicate column names
-- Risk label map draft exists in prototype CLAUDE.md — use as starting point but correct criticality values to 3/2/1 scheme
+- Risk label map draft exists in prototype AGENTS.md — use as starting point but correct criticality values to 3/2/1 scheme
 - Phase 2 goal explicitly says "testable via curl/Postman independent of any UI" — curl examples are a first-class deliverable
 - Mock mode should produce the same 70/20/10 distribution as the mock data (threshold logic on anomaly_score achieves this naturally)
 

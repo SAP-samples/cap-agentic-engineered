@@ -8,10 +8,10 @@
 - No test framework configured in this repository (documentation-only project)
 
 **For SAP Projects (documented standards):**
-- Backend (Python): `pytest` (per `CLAUDE.md`)
+- Backend (Python): `pytest` (per `AGENTS.md`)
 - Backend (Node.js/CAP): Jest or Mocha (standard for CAP projects)
 - Frontend (SAPUI5): QUnit or OPA5 (SAP standard)
-- UI Testing: Playwright MCP (per demo2 `CLAUDE.md`)
+- UI Testing: Playwright MCP (per demo2 `AGENTS.md`)
 
 **Assertion Library:**
 - pytest: Built-in assertion rewriting
@@ -127,7 +127,7 @@ Not detected in this repository.
 
 **Requirements:**
 - No specific coverage target documented
-- "Check coverage (optional but recommended)" — `pytest --cov=app` (per demo2 `CLAUDE.md`)
+- "Check coverage (optional but recommended)" — `pytest --cov=app` (per demo2 `AGENTS.md`)
 
 **View Coverage:**
 ```bash
@@ -144,15 +144,15 @@ npm run test:coverage
 **Unit Tests:**
 - Scope: Individual functions, methods, or components
 - Approach: Isolated, fast, no external dependencies
-- Documented as mandatory gate in `CLAUDE.md`
+- Documented as mandatory gate in `AGENTS.md`
 
 **Integration Tests:**
 - Scope: Service handlers, API endpoints, data layer integration
 - Approach: Test component interactions with real or simulated services
-- Documented as part of orchestrator's integration testing phase (prototype `CLAUDE.md` line 180)
+- Documented as part of orchestrator's integration testing phase (prototype `AGENTS.md` line 180)
 
 **E2E Tests:**
-- Framework: Playwright MCP (documented in demo2 `CLAUDE.md`)
+- Framework: Playwright MCP (documented in demo2 `AGENTS.md`)
 - Scope: Full user flows through UI and backend
 - Approach: Browser automation, screenshots, interaction verification
 
@@ -194,7 +194,7 @@ def test_invalid_query():
 
 ## UI Testing with Playwright MCP
 
-**Documented Pattern (from demo2 `CLAUDE.md`):**
+**Documented Pattern (from demo2 `AGENTS.md`):**
 
 1. Navigate to the application (e.g., `http://localhost:8080`)
 2. Take screenshots of key UI states
@@ -208,7 +208,7 @@ def test_invalid_query():
 
 ## Pre-Commit Testing Gates
 
-**Mandatory Checks (from demo2 `CLAUDE.md` lines 52-94):**
+**Mandatory Checks (from demo2 `AGENTS.md` lines 52-94):**
 
 ⛔ **YOU CANNOT COMMIT UNTIL ALL TESTS PASS** ⛔
 
@@ -247,15 +247,15 @@ poetry run pytest --cov=app     # Check coverage (optional but recommended)
 
 2. **Human-in-the-Loop Governance** — Tests are mandatory gates, but developers remain final gatekeepers for quality (per `ref-arch/readme.md`)
 
-3. **No Commit Without Passing Tests** — Hard rule: if `npm run lint` or `pytest` fails, you cannot commit (per demo2 `CLAUDE.md` line 108)
+3. **No Commit Without Passing Tests** — Hard rule: if `npm run lint` or `pytest` fails, you cannot commit (per demo2 `AGENTS.md` line 108)
 
-4. **Quality Gates in Multi-Agent Workflows** — In agent team development, "Each PR requires passing tests before merge" (per prototype `CLAUDE.md` line 125)
+4. **Quality Gates in Multi-Agent Workflows** — In agent team development, "Each PR requires passing tests before merge" (per prototype `AGENTS.md` line 125)
 
-5. **End-to-End Validation** — Orchestrator runs integration testing after all PRs merge (per prototype `CLAUDE.md` line 180)
+5. **End-to-End Validation** — Orchestrator runs integration testing after all PRs merge (per prototype `AGENTS.md` line 180)
 
 ## Agent Team Testing Pattern
 
-**From prototype `CLAUDE.md`:**
+**From prototype `AGENTS.md`:**
 
 When using multi-agent development with git worktrees:
 

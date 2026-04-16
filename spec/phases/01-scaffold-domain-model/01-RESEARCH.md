@@ -8,7 +8,7 @@
 
 Phase 1 scaffolds a CAP Node.js project with CDS entities matching the BDC `gl_features_for_ml` schema, CSV mock data for local development, and git worktree infrastructure for 3-agent parallel execution. The research confirms CAP's "convention over configuration" philosophy where `cds init` + `cds watch` creates a working OData V4 service with zero additional setup. Mock data loads automatically from CSV files in `db/data/` following the `namespace-Entity.csv` naming convention. Git worktrees enable true parallel development by allowing multiple branches to be checked out simultaneously in sibling directories.
 
-**Key finding:** The documented "25 features" is incorrect — USE_CASE.md table and prototype CLAUDE.md array both enumerate exactly **24 feature columns**. All documentation referencing "25" must be corrected to "24" for consistency.
+**Key finding:** The documented "25 features" is incorrect — USE_CASE.md table and prototype AGENTS.md array both enumerate exactly **24 feature columns**. All documentation referencing "25" must be corrected to "24" for consistency.
 
 **Primary recommendation:** Use `cds init` in this directory, define a single flat CDS entity with SAP composite key (CompanyCode + FiscalYear + DocumentNumber + LineItem), populate ~50 CSV rows with realistic GL data following SAP patterns, and set up git worktrees as sibling directories for backend and frontend branches.
 
@@ -18,7 +18,7 @@ Phase 1 scaffolds a CAP Node.js project with CDS entities matching the BDC `gl_f
 ### Locked Decisions
 - **Mock data design:** ~50 rows of GL transactions in CSV format with realistic skew distribution (~70% Normal, ~20% medium risk, ~10% high risk). SAP-realistic field values (company codes 1000/2000, GL accounts 400000/600000, cost centers CC1000). Clean data only — no edge cases, all positive amounts, weekday-heavy, typical transaction patterns.
 - **CDS entity structure:** Single flat entity (not normalized) matching flat BDC data product shape. SAP composite primary key: CompanyCode + FiscalYear + DocumentNumber + LineItem. Risk result fields (riskClassification, riskExplanation, anomalyScore) are virtual/transient — not persisted, populated in-memory by Analyze action. All 24 feature columns inline on same entity.
-- **Feature column count:** **24 features, not 25** — USE_CASE.md table and CLAUDE.md array both enumerate exactly 24 columns. Fix all docs (REQUIREMENTS.md, ROADMAP.md, prototype CLAUDE.md success criteria) to say 24. FEATURE_COLUMNS constant is single source of truth.
+- **Feature column count:** **24 features, not 25** — USE_CASE.md table and AGENTS.md array both enumerate exactly 24 columns. Fix all docs (REQUIREMENTS.md, ROADMAP.md, prototype AGENTS.md success criteria) to say 24. FEATURE_COLUMNS constant is single source of truth.
 - **Project folder layout:** CAP project initialized in this directory. Standard CAP structure: `db/` (schema + CSV), `srv/` (services + handlers), `app/` (Fiori app). Git worktrees as sibling directories: `../prototype-backend` (branch `feature/backend`) and `../prototype-frontend` (branch `feature/frontend`). `.env.example` template with placeholders; `.env` and `default-env.json` gitignored.
 
 ### Claude's Discretion
@@ -325,8 +325,8 @@ SAP_AI_CORE_AUTH_URL=https://my-subdomain.authentication.eu10.hana.ondemand.com/
 
 ### Pitfall 7: Feature Column Count Documentation Error
 **What goes wrong:** Code references 25 features but array has 24. Off-by-one errors in validation, tests fail intermittently.
-**Why it happens:** Requirements doc says "25 features" but actual model contract has 24 (counted from USE_CASE.md table and CLAUDE.md array).
-**How to avoid:** **CRITICAL FIX REQUIRED:** Update REQUIREMENTS.md line 10 (DATA-01), ROADMAP.md line 30 (Phase 1 success criteria), and prototype CLAUDE.md line 30 to say "24 feature columns" not "25".
+**Why it happens:** Requirements doc says "25 features" but actual model contract has 24 (counted from USE_CASE.md table and AGENTS.md array).
+**How to avoid:** **CRITICAL FIX REQUIRED:** Update REQUIREMENTS.md line 10 (DATA-01), ROADMAP.md line 30 (Phase 1 success criteria), and prototype AGENTS.md line 30 to say "24 feature columns" not "25".
 **Warning signs:** Test expects `FEATURE_COLUMNS.length === 25` but fails. AI Core returns 11 predictions for 11 classes, not 25.
 
 ## Code Examples
@@ -523,7 +523,7 @@ const predictionUrl = process.env.AI_CORE_PREDICTION_URL;
 - npm package versions verified via `npm info` commands (March 9, 2026): @sap/cds@9.8.0, @sap/cds-dk@9.7.2, jest@30.2.0, mocha@11.7.5, @sap-ai-sdk/ai-api@2.8.0
 
 ### Tertiary (LOW confidence)
-- Feature column count (24 not 25): VERIFIED by manual inspection of USE_CASE.md table (24 rows numbered 1-24) and prototype CLAUDE.md FEATURE_COLUMNS array (JavaScript array length confirmed as 24 via Node.js)
+- Feature column count (24 not 25): VERIFIED by manual inspection of USE_CASE.md table (24 rows numbered 1-24) and prototype AGENTS.md FEATURE_COLUMNS array (JavaScript array length confirmed as 24 via Node.js)
 
 ## Metadata
 

@@ -30,7 +30,7 @@
 
 **Configuration Layer:**
 - Purpose: Tool configuration for AI-native development workflows
-- Location: `.claude/`, root `CLAUDE.md`
+- Location: `.claude/`, root `AGENTS.md`
 - Contains: MCP server settings, permission policies, development standards
 - Depends on: Claude Code, SAP Build MCP servers, LiteLLM
 - Used by: Claude Code and other AI coding assistants
@@ -54,7 +54,7 @@
 
 **Multi-Agent Development Flow (Prototype Example):**
 
-1. Architect reads `../prototype/CLAUDE.md` and `../prototype/USE_CASE.md`
+1. Architect reads `../prototype/AGENTS.md` and `../prototype/USE_CASE.md`
 2. Orchestrator agent spawns team of specialized agents (frontend, backend, integration)
 3. Each agent works in isolated git worktree on separate branch
 4. Agents query SAP Build MCP servers for CAP/Fiori/UI5 best practices
@@ -66,7 +66,7 @@
 1. Developer configures Claude Code with settings from `.claude/settings.local.json`
 2. MCP servers (CAP, Fiori, UI5, MDK) are registered as tool providers
 3. LiteLLM proxy routes requests to SAP AI Core foundation models
-4. Agent reads context from `CLAUDE.md` files (project instructions)
+4. Agent reads context from `AGENTS.md` files (project instructions)
 5. Agent queries MCP servers for SAP-specific guidance during code generation
 6. Generated code follows SAP best practices embedded in MCP context
 
@@ -84,7 +84,7 @@
 
 **Agent Team Specification:**
 - Purpose: Blueprint for multi-agent parallel development
-- Examples: `../prototype/CLAUDE.md`
+- Examples: `../prototype/AGENTS.md`
 - Pattern: Team composition table, worktree setup instructions, workflow phases, task assignment rules, definition of done
 
 **Use Case Definition:**
@@ -94,7 +94,7 @@
 
 **MCP Server Configuration:**
 - Purpose: Register SAP Build MCP servers as tool providers for AI coding assistants
-- Examples: Configuration embedded in root `CLAUDE.md`
+- Examples: Configuration embedded in root `AGENTS.md`
 - Pattern: JSON configuration with npx-based server startup commands
 
 ## Entry Points
@@ -115,12 +115,12 @@
 - Responsibilities: Document native SAP AI Core provider configuration, context engineering principles
 
 **Prototype Orchestrator Instructions:**
-- Location: `../prototype/CLAUDE.md`
+- Location: `../prototype/AGENTS.md`
 - Triggers: Claude Code orchestrator agent reading team setup
 - Responsibilities: Define agent team structure, spawn teammates, establish workflow phases, set definition of done
 
 **Project Instructions for AI Agents:**
-- Location: `/CLAUDE.md` (root)
+- Location: `/AGENTS.md` (root)
 - Triggers: AI coding assistants reading project context
 - Responsibilities: Configure LiteLLM, document MCP servers, establish SAP code standards, define BDC integration pattern
 

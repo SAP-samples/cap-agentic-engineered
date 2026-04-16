@@ -5,7 +5,7 @@
 ## Naming Patterns
 
 **Files:**
-- Markdown documentation: UPPERCASE.md for architecture/config files (`CLAUDE.md`, `README.md`, `USE_CASE.md`)
+- Markdown documentation: UPPERCASE.md for architecture/config files (`AGENTS.md`, `README.md`, `USE_CASE.md`)
 - kebab-case for reference architecture pages: `readme.md`
 - DrawIO diagrams: kebab-case with .drawio extension: `vibe-engineering-overview.drawio`, `claude-code-architecture.drawio`
 
@@ -39,7 +39,7 @@
 
 For SAP projects documented here, the standards are:
 
-**Order (from `CLAUDE.md`):**
+**Order (from `AGENTS.md`):**
 1. External dependencies (npm packages)
 2. SAP framework modules (`sap.ui.define`)
 3. Internal project modules
@@ -55,7 +55,7 @@ For SAP projects documented here, the standards are:
 
 **Patterns:**
 - No source code to analyze
-- Documented guideline: Use CAP's `cds.log` instead of `console.log` in production code (per `CLAUDE.md` line 182)
+- Documented guideline: Use CAP's `cds.log` instead of `console.log` in production code (per `AGENTS.md` line 182)
 
 ## Logging
 
@@ -103,7 +103,7 @@ For SAP projects documented here, the standards are:
 ## SAP-Specific Conventions
 
 **SAPUI5/Fiori:**
-- XML views only — no JavaScript views (per `CLAUDE.md` line 177)
+- XML views only — no JavaScript views (per `AGENTS.md` line 177)
 - `sap.ui.define` for all modules — no globals (line 178)
 - Async loading: `data-sap-ui-async="true"` (line 179)
 - i18n for all user-facing text (line 180)
@@ -122,14 +122,14 @@ For SAP projects documented here, the standards are:
 - Never commit `.env` files or credentials (`.gitignore` enforces this)
 
 **Python:**
-- Use **Poetry** for all dependency management — never `pip`, `venv`, or `virtualenv` (per `CLAUDE.md` lines 139-173)
+- Use **Poetry** for all dependency management — never `pip`, `venv`, or `virtualenv` (per `AGENTS.md` lines 139-173)
 - Commands: `poetry install`, `poetry add`, `poetry run`, `poetry shell`
 - Always commit `poetry.lock` for reproducible installs
 
 ## Git Conventions
 
 **Branch Naming:**
-- Format: `<type>/<description>` (per `CLAUDE.md` line 189)
+- Format: `<type>/<description>` (per `AGENTS.md` line 189)
 - Types: `feature/`, `bugfix/`, `docs/`, `hotfix/`, `chore/`, `refactor/`
 
 **Commit Format:**
@@ -139,15 +139,15 @@ For SAP projects documented here, the standards are:
 - Example: `feat: add journal entry analyzer AI chat interface. Closes #5`
 
 **Pull Requests:**
-- Squash merge for all PRs (documented in demo2 CLAUDE.md)
+- Squash merge for all PRs (documented in demo2 AGENTS.md)
 - Include test results in PR description
 - One PR per feature/fix
 
 ## Documentation Standards
 
 **File Organization:**
-- Root `CLAUDE.md`: Project-wide conventions and configuration
-- Module `CLAUDE.md`: Module-specific instructions (e.g., `../prototype/CLAUDE.md`, `ref-arch/CLAUDE.md`)
+- Root `AGENTS.md`: Project-wide conventions and configuration
+- Module `AGENTS.md`: Module-specific instructions (e.g., `../prototype/AGENTS.md`, `ref-arch/AGENTS.md`)
 - `README.md`: User-facing overview and structure
 - `USE_CASE.md`: Functional specifications (where applicable)
 

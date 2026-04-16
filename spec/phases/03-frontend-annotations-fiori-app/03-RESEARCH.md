@@ -77,7 +77,7 @@ The core work is annotation-driven -- the vast majority of UI behavior is declar
 | @sap/cds | ^9.8.0 | CAP runtime + CDS compiler | Already installed, serves OData + Fiori preview |
 | sap.fe.templates | (bundled with UI5) | Fiori Elements V4 templates (ListReport, ObjectPage) | Standard SAP approach for annotation-driven Fiori apps |
 | sap.fe.core | (bundled with UI5) | Fiori Elements V4 core runtime | AppComponent base class, action handling |
-| SAPUI5 | 1.120+ | UI framework | Project CLAUDE.md specifies 1.120+ |
+| SAPUI5 | 1.120+ | UI framework | Project AGENTS.md specifies 1.120+ |
 
 ### Supporting
 | Library | Version | Purpose | When to Use |
@@ -88,7 +88,7 @@ The core work is annotation-driven -- the vast majority of UI behavior is declar
 ### Alternatives Considered
 | Instead of | Could Use | Tradeoff |
 |------------|-----------|----------|
-| Fiori Elements annotation-driven | Custom SAPUI5 freestyle app | Loses auto-generated filter bar, table, export; far more code; goes against CLAUDE.md rules |
+| Fiori Elements annotation-driven | Custom SAPUI5 freestyle app | Loses auto-generated filter bar, table, export; far more code; goes against AGENTS.md rules |
 | CDS annotations in .cds files | OData $metadata XML annotations | CDS is the standard CAP approach; XML is verbose and fragile |
 | BulletMicroChart for anomaly score | RadialMicroChart or plain text | Bullet chart shows 0-1 range intuitively; Radial is also viable (discretion item) |
 
@@ -117,7 +117,7 @@ The existing `package.json` already has all required dependencies. The Fiori Ele
 
 ### Pattern 1: Annotation-First Development
 **What:** All UI behavior is declared in CDS annotations, not JavaScript code. The webapp is a minimal shell.
-**When to use:** Always for Fiori Elements apps (per CLAUDE.md: "annotation-driven where possible")
+**When to use:** Always for Fiori Elements apps (per AGENTS.md: "annotation-driven where possible")
 **Example:**
 ```cds
 // Source: SAP CAP documentation + SAP sflight sample
@@ -621,14 +621,14 @@ using from './risks/annotations';
 | `sap.ui.comp.smarttable.SmartTable` | `sap.fe.macros.Table` (auto) | UI5 1.84+ | V4 tables are fully annotation-driven |
 | XML annotations files | CDS annotations | CAP standard | CDS compiles to OData vocabulary; much more concise |
 | `sap.ui.core.UIComponent` | `sap.fe.core.AppComponent` | V4 templates | Must extend AppComponent for Fiori Elements V4 |
-| `jQuery.sap.declare` | `sap.ui.define` | SAPUI5 1.28+ | Project CLAUDE.md mandates: no deprecated APIs |
+| `jQuery.sap.declare` | `sap.ui.define` | SAPUI5 1.28+ | Project AGENTS.md mandates: no deprecated APIs |
 | Manual export button | `enableExport: true` in manifest | V4 templates | One configuration flag enables spreadsheet export |
 
 **Deprecated/outdated:**
-- `sap.ui.getCore()` -- banned by CLAUDE.md
-- `jQuery.sap.*` -- banned by CLAUDE.md
+- `sap.ui.getCore()` -- banned by AGENTS.md
+- `jQuery.sap.*` -- banned by AGENTS.md
 - `sap.ui.comp.*` (V2 smart controls) -- not available in V4 templates
-- Synchronous module loading -- banned by CLAUDE.md (`data-sap-ui-async="true"` required)
+- Synchronous module loading -- banned by AGENTS.md (`data-sap-ui-async="true"` required)
 
 ## Open Questions
 

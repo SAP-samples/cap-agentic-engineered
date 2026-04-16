@@ -26,8 +26,8 @@ A running CAP project with the complete domain model, mock data, and project inf
 - All 24 feature columns are inline on the same entity (no separate FeatureSet entity)
 
 ### Feature column count
-- **24 features, not 25** — USE_CASE.md table and CLAUDE.md code arrays both enumerate exactly 24 columns. The "25" references in prose (REQUIREMENTS.md, ROADMAP.md, prototype CLAUDE.md) are documentation errors.
-- Fix all docs (REQUIREMENTS.md, ROADMAP.md, prototype CLAUDE.md success criteria) to say 24 for consistency
+- **24 features, not 25** — USE_CASE.md table and AGENTS.md code arrays both enumerate exactly 24 columns. The "25" references in prose (REQUIREMENTS.md, ROADMAP.md, prototype AGENTS.md) are documentation errors.
+- Fix all docs (REQUIREMENTS.md, ROADMAP.md, prototype AGENTS.md success criteria) to say 24 for consistency
 - FEATURE_COLUMNS constant is the single source of truth for column names and order
 
 ### Project folder layout
@@ -56,7 +56,7 @@ No specific requirements — open to standard approaches. The decisions above pr
 ## Existing Code Insights
 
 ### Reusable Assets
-- None — this directory contains only CLAUDE.md and USE_CASE.md. This is a greenfield scaffold.
+- None — this directory contains only AGENTS.md and USE_CASE.md. This is a greenfield scaffold.
 
 ### Established Patterns
 - CDS naming: PascalCase entities, camelCase fields (from CONVENTIONS.md)

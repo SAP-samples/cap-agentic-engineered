@@ -11,7 +11,7 @@ This project is a SAP CAP + Fiori Elements list report that visualizes XGBoost a
 
 The recommended approach is mock-first development: define the CDS entity schema derived from the BDC data product metadata, populate it with CSV mock data, and build the entire frontend and backend against mocks. The BTP Destination wiring to real BDC comes last. The "Analyze" button triggers a CAP bound action that extracts exactly 25 ordered numeric features, POSTs them to AI Core, maps the 11 class labels to business-language text with Fiori criticality codes, and returns enriched entities that the list report renders with color coding. Static label mapping (no GenAI) keeps the inference path deterministic, fast, and free of hallucination risk.
 
-The top risks are: (1) feature column order mismatch silently producing wrong predictions -- mitigate with a single-source-of-truth FEATURE_COLUMNS constant and a canary unit test; (2) OAuth token expiry causing inference failures hours after deployment -- mitigate with TTL-based token caching from day one; (3) the CAP action return type not matching what Fiori Elements expects, causing the UI to show "Success" while risk columns remain empty -- mitigate by designing the action signature and SideEffects annotation together before coding. A documented bug exists in the project's own CLAUDE.md: criticality value 0 is described as "positive/green" but Fiori Elements interprets it as "neutral/grey". The correct mapping is 3=positive (green).
+The top risks are: (1) feature column order mismatch silently producing wrong predictions -- mitigate with a single-source-of-truth FEATURE_COLUMNS constant and a canary unit test; (2) OAuth token expiry causing inference failures hours after deployment -- mitigate with TTL-based token caching from day one; (3) the CAP action return type not matching what Fiori Elements expects, causing the UI to show "Success" while risk columns remain empty -- mitigate by designing the action signature and SideEffects annotation together before coding. A documented bug exists in the project's own AGENTS.md: criticality value 0 is described as "positive/green" but Fiori Elements interprets it as "neutral/grey". The correct mapping is 3=positive (green).
 
 ## Key Findings
 
@@ -74,7 +74,7 @@ The architecture is a four-layer stack: Fiori Elements frontend (annotation-driv
 1. **Feature column order mismatch** -- XGBoost accepts any 25-element array without validation; wrong order produces silent wrong predictions. Fix: define `FEATURE_COLUMNS` as a single constant with a unit test asserting length and order against a known input/output canary.
 2. **OAuth token expiry** -- tokens expire after ~12 hours; "fetch once at startup" pattern causes production failure. Fix: implement TTL-based token cache with proactive refresh when <5 minutes remain.
 3. **Action return type mismatch with Fiori Elements** -- if the CAP action returns strings instead of full entity types, Fiori shows "Success" but risk columns stay empty. Fix: return `array of <EntityType>` and/or configure `@Common.SideEffects` to trigger list refresh.
-4. **Criticality annotation bug** -- project CLAUDE.md says `0=positive/green` but Fiori interprets 0 as neutral/grey. Fix: use `3` for positive (green), `1` for negative (red), `2` for critical (orange).
+4. **Criticality annotation bug** -- project AGENTS.md says `0=positive/green` but Fiori interprets 0 as neutral/grey. Fix: use `3` for positive (green), `1` for negative (red), `2` for critical (orange).
 5. **Mock data schema drift from real BDC** -- hand-crafted CSV diverges from actual BDC EDMX in field names, types, nullability. Fix: derive CDS entity from imported EDMX; use `cds add data` for CSV templates.
 6. **Batch inference timeout at scale** -- 500+ transactions in a single AI Core POST causes timeout. Fix: chunk into batches of 50-100 and parallelize.
 
@@ -163,7 +163,7 @@ Phases with standard patterns (skip research-phase):
 ### Project Context
 - `spec/PROJECT.md` -- project constraints and key decisions
 - `../prototype/USE_CASE.md` -- AI Core model contract, feature columns, anomaly classes
-- `../prototype/CLAUDE.md` -- agent instructions (contains criticality mapping bug documented above)
+- `../prototype/AGENTS.md` -- agent instructions (contains criticality mapping bug documented above)
 
 ---
 *Research completed: 2026-03-09*

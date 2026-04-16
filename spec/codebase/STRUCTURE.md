@@ -18,7 +18,7 @@ cap-agentic-engineered/
 │   └── drawio/                # Shared architecture diagrams
 ├── .env                       # Environment variables (not committed)
 ├── .gitignore                 # Git exclusions
-├── CLAUDE.md                  # Project instructions for AI agents
+├── AGENTS.md                  # Project instructions for AI agents
 └── README.md                  # Repository overview
 ```
 
@@ -27,7 +27,7 @@ cap-agentic-engineered/
 **`ref-arch/`:**
 - Purpose: Reference architecture documentation for SAP Architecture Center publication
 - Contains: Markdown files with YAML frontmatter, sub-page directories, DrawIO diagrams
-- Key files: `readme.md` (main overview), `CLAUDE.md` (writing guidelines)
+- Key files: `readme.md` (main overview), `AGENTS.md` (writing guidelines)
 
 **`ref-arch/1-vibe-coding-with-cline/`:**
 - Purpose: Sub-page documenting Cline + SAP AI Core integration
@@ -42,7 +42,7 @@ cap-agentic-engineered/
 **`prototype/`:**
 - Purpose: Example multi-agent development specification (Journal Entry Analyzer)
 - Contains: Agent team instructions, use case definition
-- Key files: `CLAUDE.md` (agent instructions), `USE_CASE.md` (app specification)
+- Key files: `AGENTS.md` (agent instructions), `USE_CASE.md` (app specification)
 
 **`.claude/`:**
 - Purpose: Claude Code tool configuration
@@ -78,7 +78,7 @@ cap-agentic-engineered/
 
 **Entry Points:**
 - `/README.md`: Repository overview, directory structure, key technologies
-- `/CLAUDE.md`: Project instructions for AI agents (MCP servers, LiteLLM config, Python standards)
+- `/AGENTS.md`: Project instructions for AI agents (MCP servers, LiteLLM config, Python standards)
 - `ref-arch/readme.md`: Main reference architecture page (vibe engineering overview)
 
 **Configuration:**
@@ -90,10 +90,10 @@ cap-agentic-engineered/
 - `ref-arch/readme.md`: Vibe engineering for SAP AI-native (main page)
 - `ref-arch/1-vibe-coding-with-cline/readme.md`: Cline integration guide
 - `ref-arch/2-accelerating-dev-with-claude-code/readme.md`: Claude Code integration guide
-- `ref-arch/CLAUDE.md`: Writing guidelines (structure, tags, status, content rules)
+- `ref-arch/AGENTS.md`: Writing guidelines (structure, tags, status, content rules)
 
 **Prototype Specification:**
-- `../prototype/CLAUDE.md`: Agent team instructions (team composition, worktree setup, workflow, definition of done)
+- `../prototype/AGENTS.md`: Agent team instructions (team composition, worktree setup, workflow, definition of done)
 - `../prototype/USE_CASE.md`: Journal Entry Analyzer use case (problem, solution, BDC data products, views)
 
 **Analysis Artifacts:**
@@ -103,7 +103,7 @@ cap-agentic-engineered/
 ## Naming Conventions
 
 **Files:**
-- Markdown: `readme.md` (lowercase) for primary content pages, `CLAUDE.md` (uppercase) for agent instructions, `USE_CASE.md` (uppercase) for specifications
+- Markdown: `readme.md` (lowercase) for primary content pages, `AGENTS.md` (uppercase) for agent instructions, `USE_CASE.md` (uppercase) for specifications
 - Diagrams: `kebab-case-diagram-name.drawio`
 - Configuration: `settings.local.json`, `.gitignore`, `.env`
 
@@ -121,7 +121,7 @@ cap-agentic-engineered/
 
 **New Prototype/Example:**
 - Create: `prototype-name/` at root level
-- Agent instructions: `prototype-name/CLAUDE.md`
+- Agent instructions: `prototype-name/AGENTS.md`
 - Use case: `prototype-name/USE_CASE.md`
 - Update: Root `README.md` to document new example
 
@@ -131,13 +131,13 @@ cap-agentic-engineered/
 - Reference in markdown: `![drawio](drawio/diagram-name.drawio)` or `![drawio](../drawio/diagram-name.drawio)`
 
 **New MCP Server Configuration:**
-- Add to: Root `CLAUDE.md` in "SAP Build MCP Server Configuration" section
+- Add to: Root `AGENTS.md` in "SAP Build MCP Server Configuration" section
 - Format: JSON configuration with `npx` command pattern
 - Update: Corresponding reference architecture page to document usage
 
 **New AI Agent Instructions:**
-- Project-level: Root `CLAUDE.md`
-- Prototype-level: `../prototype/CLAUDE.md` (or new prototype directory)
+- Project-level: Root `AGENTS.md`
+- Prototype-level: `../prototype/AGENTS.md` (or new prototype directory)
 - Format: Markdown with clear headings, code examples, definition of done checklist
 
 ## Special Directories
@@ -181,11 +181,11 @@ Each sub-page follows this template:
 8. `## Resources` section with external links
 
 **Prototype Specification Structure:**
-- `CLAUDE.md`: Agent instructions — Mission, Application summary, Prerequisites, Agent team structure, Agent workflow, Runtime integration examples, Orchestrator checklist, Definition of done
+- `AGENTS.md`: Agent instructions — Mission, Application summary, Prerequisites, Agent team structure, Agent workflow, Runtime integration examples, Orchestrator checklist, Definition of done
 - `USE_CASE.md`: Use case definition — Problem, Solution, BDC data products table, Application views, Architecture diagram, Tech stack table, Agent decomposition, Definition of done
 
 **MCP Server Configuration Pattern:**
-Stored in root `CLAUDE.md`, structured as:
+Stored in root `AGENTS.md`, structured as:
 ```json
 {
   "mcpServers": {
@@ -203,7 +203,7 @@ Stored in root `CLAUDE.md`, structured as:
 - Main overview: `ref-arch/readme.md`
 - Cline guide: `ref-arch/1-vibe-coding-with-cline/readme.md`
 - Claude Code guide: `ref-arch/2-accelerating-dev-with-claude-code/readme.md`
-- Writing guidelines: `ref-arch/CLAUDE.md`
+- Writing guidelines: `ref-arch/AGENTS.md`
 
 **Diagrams:**
 - Overview diagram: `ref-arch/drawio/vibe-engineering-overview.drawio`
@@ -211,11 +211,11 @@ Stored in root `CLAUDE.md`, structured as:
 - Claude Code flow: `ref-arch/2-accelerating-dev-with-claude-code/drawio/claude-code-architecture.drawio`
 
 **Prototype:**
-- Agent instructions: `../prototype/CLAUDE.md`
+- Agent instructions: `../prototype/AGENTS.md`
 - Use case: `../prototype/USE_CASE.md`
 
 **Configuration:**
-- Project instructions: `/CLAUDE.md`
+- Project instructions: `/AGENTS.md`
 - Claude Code settings: `.claude/settings.local.json`
 - Environment variables: `.env` (not committed)
 

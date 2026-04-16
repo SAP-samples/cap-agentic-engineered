@@ -11,28 +11,28 @@
 - Fix approach: Verify file is not in git history with `git log --all --full-history -- .env`; if present, use git-filter-repo or BFG to remove from history; rotate credentials if exposed; add pre-commit hook to block `.env` commits
 
 **Documentation-Only Repository with No Runtime Code:**
-- Issue: The prototype instructions reference a full-stack SAP CAP + Fiori/SAPUI5 application in `../prototype/CLAUDE.md` and `../prototype/USE_CASE.md`, but no implementation exists
-- Files: `./../prototype/CLAUDE.md`, `./../prototype/USE_CASE.md`
+- Issue: The prototype instructions reference a full-stack SAP CAP + Fiori/SAPUI5 application in `../prototype/AGENTS.md` and `../prototype/USE_CASE.md`, but no implementation exists
+- Files: `./../prototype/AGENTS.md`, `./../prototype/USE_CASE.md`
 - Impact: Gap between documented reference architecture and executable example makes it hard for developers to validate the patterns; no proof-of-concept
 - Fix approach: Implement the Journal Entry Analyzer prototype as a separate repository and link to it, or mark prototype as aspirational/future work
 
 **Conflicting Python Package Management Guidance:**
-- Issue: Root `CLAUDE.md` mandates Poetry, but prototype `CLAUDE.md` references `uv` (lines 50-173 in ../prototype/CLAUDE.md)
-- Files: `./CLAUDE.md` (lines 139-173), `./../prototype/CLAUDE.md` (inherited from different source)
+- Issue: Root `AGENTS.md` mandates Poetry, but prototype `AGENTS.md` references `uv` (lines 50-173 in ../prototype/AGENTS.md)
+- Files: `./AGENTS.md` (lines 139-173), `./../prototype/AGENTS.md` (inherited from different source)
 - Impact: Developers receive contradictory instructions; unclear which tool to use for Python projects
-- Fix approach: Standardize on one tool (Poetry recommended per root CLAUDE.md); update prototype CLAUDE.md to remove `uv` references; or clarify when to use each tool
+- Fix approach: Standardize on one tool (Poetry recommended per root AGENTS.md); update prototype AGENTS.md to remove `uv` references; or clarify when to use each tool
 
 **No Dependency Manifests Present:**
-- Issue: No `package.json`, `pyproject.toml`, `requirements.txt`, or `poetry.lock` files exist, yet CLAUDE.md documents Poetry setup
+- Issue: No `package.json`, `pyproject.toml`, `requirements.txt`, or `poetry.lock` files exist, yet AGENTS.md documents Poetry setup
 - Files: Expected in `./backend/` or root (none found)
 - Impact: Instructions reference non-existent files; no actual Python dependencies defined; copy-paste from a different project may have occurred
-- Fix approach: Either add Python backend implementation with proper `pyproject.toml`, or remove backend-specific instructions from CLAUDE.md
+- Fix approach: Either add Python backend implementation with proper `pyproject.toml`, or remove backend-specific instructions from AGENTS.md
 
 **No Test Infrastructure:**
-- Issue: CLAUDE.md references testing workflow (pytest, npm run lint, Playwright MCP) but no test files exist
+- Issue: AGENTS.md references testing workflow (pytest, npm run lint, Playwright MCP) but no test files exist
 - Files: Searched for `*.test.*`, `*.spec.*`, test directories — none found
 - Impact: Documentation references a testing process that cannot be executed; no quality gates can be enforced
-- Fix approach: Remove testing instructions from CLAUDE.md, or add test infrastructure when implementation is added
+- Fix approach: Remove testing instructions from AGENTS.md, or add test infrastructure when implementation is added
 
 ## Known Bugs
 
@@ -42,7 +42,7 @@
 ## Security Considerations
 
 **.env File Exposure Risk:**
-- Risk: `.env` file detected on filesystem with SAP AI Core credentials (based on CLAUDE.md specification: CLIENT_ID, CLIENT_SECRET, AUTH_URL, BASE_URL)
+- Risk: `.env` file detected on filesystem with SAP AI Core credentials (based on AGENTS.md specification: CLIENT_ID, CLIENT_SECRET, AUTH_URL, BASE_URL)
 - Files: `./.env`
 - Current mitigation: File is listed in `.gitignore` (lines 2-4)
 - Recommendations:
@@ -52,8 +52,8 @@
   - Use git-secrets or similar tool to scan for leaked credentials in commit messages and file contents
 
 **Hardcoded Credential Patterns in Documentation:**
-- Risk: CLAUDE.md contains example configuration with placeholder credentials that could be mistakenly used
-- Files: `./CLAUDE.md` (lines 11-16)
+- Risk: AGENTS.md contains example configuration with placeholder credentials that could be mistakenly used
+- Files: `./AGENTS.md` (lines 11-16)
 - Current mitigation: Uses obvious placeholders (`<clientid>`, `<subdomain>`, `<region>`)
 - Recommendations: Add explicit warning comment above examples: "# NEVER commit real credentials"
 
@@ -65,7 +65,7 @@
 
 **No Auth Token Validation Pattern:**
 - Risk: LiteLLM config examples show `sk-litellm-master-key` as API key, but no guidance on securing this token
-- Files: `./CLAUDE.md` (line 40)
+- Files: `./AGENTS.md` (line 40)
 - Current mitigation: Example only, not production config
 - Recommendations: Add security guidance for production LiteLLM deployments (token rotation, HTTPS enforcement, network isolation)
 
@@ -77,25 +77,25 @@
 ## Fragile Areas
 
 **Multi-Agent Workflow Documentation:**
-- Files: `./../prototype/CLAUDE.md` (lines 62-128)
+- Files: `./../prototype/AGENTS.md` (lines 62-128)
 - Why fragile: Complex 9-agent orchestration with scaffolding dependencies, git worktree setup, issue tracking, and PR workflow — many moving parts with no working example
 - Safe modification: If changing agent team structure, update dependency diagram in lines 109-126 first; test with 2-agent setup before scaling to 9
 - Test coverage: None — no executable prototype exists
 
 **SAP BDC Integration Pattern:**
-- Files: `./CLAUDE.md` (lines 85-107), `./../prototype/USE_CASE.md` (lines 20-28)
+- Files: `./AGENTS.md` (lines 85-107), `./../prototype/USE_CASE.md` (lines 20-28)
 - Why fragile: Describes bidirectional BDC integration (read at design-time, read/write at runtime) but no implementation to validate pattern; CAP destination config is example only
 - Safe modification: When implementing, start with read-only access to verify connectivity before enabling writes
 - Test coverage: None
 
 **MCP Server Configuration:**
-- Files: `./CLAUDE.md` (lines 44-69)
+- Files: `./AGENTS.md` (lines 44-69)
 - Why fragile: Relies on external NPM packages (`@cap-js/mcp-server@latest`, `@sap-ux/fiori-mcp-server@latest`, etc.) with `@latest` tags — breaking changes in any MCP server could disrupt development
 - Safe modification: Pin to specific versions once validated; test MCP server updates in isolated environment first
 - Test coverage: None — no verification that MCP servers work as documented
 
 **Git Worktree Setup Instructions:**
-- Files: `./../prototype/CLAUDE.md` (lines 75-86)
+- Files: `./../prototype/AGENTS.md` (lines 75-86)
 - Why fragile: Manual worktree provisioning with relative paths (`../prototype-fe-1`) — easy to mistype; no validation that worktrees are correctly isolated
 - Safe modification: Add a setup script that validates worktree creation; document cleanup procedure for failed setups
 - Test coverage: None
@@ -137,12 +137,12 @@
 - Priority: High — reduces credibility of reference architecture
 
 **No CI/CD Pipeline Definition:**
-- Problem: CLAUDE.md references GitHub Issues, PRs, testing gates, but no CI/CD config (GitHub Actions, Jenkins, etc.) exists
-- Blocks: Cannot automate testing workflow described in lines 120-165 of ../prototype/CLAUDE.md
+- Problem: AGENTS.md references GitHub Issues, PRs, testing gates, but no CI/CD config (GitHub Actions, Jenkins, etc.) exists
+- Blocks: Cannot automate testing workflow described in lines 120-165 of ../prototype/AGENTS.md
 - Priority: Medium — needed when implementation is added
 
 **No Error Handling Guidance for AI Integrations:**
-- Problem: SAP Cloud SDK for AI example code in `../prototype/CLAUDE.md` (lines 142-165) has no error handling for model failures, network issues, or malformed responses
+- Problem: SAP Cloud SDK for AI example code in `../prototype/AGENTS.md` (lines 142-165) has no error handling for model failures, network issues, or malformed responses
 - Blocks: Production-ready AI features require retry logic, fallback strategies, timeout handling
 - Priority: High for production use cases
 
