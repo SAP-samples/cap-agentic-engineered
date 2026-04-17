@@ -1,72 +1,92 @@
-# Development Rules
+# AGENTS.md — MCP-Grounded SAP Development Guide
 
-## Conversational Style
+This file configures AI coding agents (Claude Code, Copilot, Cursor, etc.) to query SAP MCP servers before writing SAP-specific code. It works in conjunction with the skills in [`skills/`](skills/) that automatically trigger MCP queries when the agent touches specific file types. Together, the AGENTS.md provides the rules and the skills enforce them at the file level.
 
-- Keep answers short and concise
-- No emojis in commits, PR comments, or code
-- Technical prose only
-- No fluff or filler text
+It is a reusable pattern for any CAP + Fiori Elements project.
 
-## MCP Servers: Query Before Writing SAP Code
+## MANDATORY: Query SAP MCP Servers Before Writing SAP Code
 
-Before writing, modifying, or fixing any SAP-specific code, query the relevant MCP server. Do not rely on training knowledge alone. If MCP guidance conflicts with general knowledge, follow MCP.
+**Before writing, modifying, debugging, or fixing any SAP-specific code, you MUST query the relevant MCP server first.** Do not rely on general knowledge alone — always ground your work in MCP server guidance.
 
-| Working on...                                       | Query this MCP server      |
-| --------------------------------------------------- | -------------------------- |
-| CDS entities, types, aspects, services              | `@cap-js/mcp-server`       |
-| CAP handlers, actions, functions, events            | `@cap-js/mcp-server`       |
-| CDS annotations (`@UI`, `@Common`, `@Capabilities`) | `@sap-ux/fiori-mcp-server` |
-| Fiori Elements floorplans, manifest.json            | `@sap-ux/fiori-mcp-server` |
-| SAPUI5 controllers, XML views, control APIs         | `@ui5/mcp-server`          |
-| UI5 bindings, formatters, event handlers            | `@ui5/mcp-server`          |
+| When you are working on... | Query this MCP server FIRST |
+|---|---|
+| CDS entities, types, aspects, or services | **CAP** (`@cap-js/mcp-server`) |
+| CAP service handlers, actions, functions, or events | **CAP** (`@cap-js/mcp-server`) |
+| CDS annotations (`@UI`, `@Common`, `@Capabilities`) | **Fiori** (`@sap-ux/fiori-mcp-server`) |
+| Fiori Elements floorplans, manifest.json, or page config | **Fiori** (`@sap-ux/fiori-mcp-server`) |
+| SAPUI5 controllers, XML views, or control APIs | **UI5** (`@ui5/mcp-server`) |
+| UI5 model bindings, formatters, or event handlers | **UI5** (`@ui5/mcp-server`) |
 
-If multiple layers are involved (e.g., CDS annotation + controller), query both servers.
+**Rules:**
+- **Developing new features:** Query the MCP server for the correct pattern before writing code.
+- **Debugging issues:** Query the MCP server to verify correct API usage, annotation syntax, or handler signatures before proposing a fix.
+- **Fixing errors:** Query the MCP server to confirm the fix follows current best practices — do not guess.
+- **If multiple layers are involved** (e.g., CDS annotation + controller extension), query both the Fiori and UI5 MCP servers.
+- **Trust MCP server responses over general training knowledge.** If they conflict, follow the MCP server.
 
-### MCP Server Config
+## SAP Build MCP Server Configuration
 
-Add to `.claude/settings.json` — pin to exact versions, do not use `@latest`:
+Add to your Claude Code project settings (`.claude/settings.json`):
 
 ```json
 {
   "mcpServers": {
-    "cap":   { "command": "npx", "args": ["-y", "@cap-js/mcp-server@<pin>"] },
-    "fiori": { "command": "npx", "args": ["-y", "@sap-ux/fiori-mcp-server@<pin>"] },
-    "ui5":   { "command": "npx", "args": ["-y", "@ui5/mcp-server@<pin>"] }
+    "cap": {
+      "command": "npx",
+      "args": ["-y", "@cap-js/mcp-server@latest"]
+    },
+    "fiori": {
+      "command": "npx",
+      "args": ["-y", "@sap-ux/fiori-mcp-server@latest"]
+    },
+    "ui5": {
+      "command": "npx",
+      "args": ["-y", "@ui5/mcp-server@latest"]
+    }
   }
 }
 ```
 
-### Skills: Auto-Triggers
+### MCP Server Repositories
 
-Skills in `skills/` fire automatically when you edit matching file patterns:
+| MCP Server | Package | Repository | Description |
+|------------|---------|------------|-------------|
+| **CAP** | `@cap-js/mcp-server` | https://github.com/cap-js/mcp-server | CDS entities, services, handlers, OData annotations |
+| **Fiori** | `@sap-ux/fiori-mcp-server` | https://github.com/SAP/open-ux-tools | Fiori Elements annotations, floorplans, manifest.json |
+| **UI5** | `@ui5/mcp-server` | https://github.com/UI5/linter | SAPUI5 controls, XML views, bindings, event handlers |
 
-| Skill      | Triggers on                                    | MCP server                 |
-| ---------- | ---------------------------------------------- | -------------------------- |
-| `sap-cap`  | `db/**/*.cds`, `srv/**/*.cds`, `srv/**/*.js`   | `@cap-js/mcp-server`       |
-| `sap-fiori`| `app/**/*.cds`, `app/**/manifest.json`         | `@sap-ux/fiori-mcp-server` |
-| `sap-ui5`  | `app/**/*.xml`, `app/**/ext/**/*.js`           | `@ui5/mcp-server`          |
+All MCP servers are open-source under Apache-2.0 license.
 
-## Supply Chain & Dependency Safety
+### MCP Server Usage Guide
 
-- Never run fresh dependency resolution in CI when a lockfile exists
-- Never run install/lifecycle scripts by default — use `--ignore-scripts` unless explicitly approved
-- Never use `curl | bash`, `npx`, `pnpm dlx`, `uvx`, `pipx`, `cargo install`, `go install`, or any remote install one-liner without an exact pinned version and explicit approval
-- Never install from Git URLs, branches, mutable tags, or remote tarballs unless explicitly approved
-- Never add, upgrade, or suggest a package version released less than 7 days ago
-- Prefer exact pins and committed lockfiles
-- Node: prefer pnpm with a 7-day release-age gate and frozen lockfiles; if the repo uses npm, use `npm ci`
-- Python: prefer uv with `exclude-newer = "7 days"` and frozen lockfiles; if the repo uses pip, install only from a fully pinned, hashed requirements/lock file
-- If lifecycle scripts are required, stop and explain which package needs them and why
-- If no compliant version exists, stop and explain why — do not silently take the newest release
-- Treat changes to manifests, lockfiles, GitHub Actions workflows, Dockerfiles, build scripts, and installer scripts as security-sensitive
-- Prefer GitHub Actions pinned to full commit SHAs; prefer Docker base images pinned to immutable digests
-- Prefer registries, artifacts, and packages with provenance/signatures; verify when the workflow supports it
-- Do not bypass these rules unless explicitly approved
+| Task | Query This MCP Server |
+|---|---|
+| Define a CDS entity or service | `@cap-js/mcp-server` |
+| Write a CAP service handler | `@cap-js/mcp-server` |
+| Create Fiori Elements annotations | `@sap-ux/fiori-mcp-server` |
+| Configure a Fiori Elements floorplan | `@sap-ux/fiori-mcp-server` |
+| Create a SAPUI5 XML view | `@ui5/mcp-server` |
+| Use a SAPUI5 control or binding pattern | `@ui5/mcp-server` |
 
-## Known Pitfalls
+Always query the relevant MCP server before generating SAP-specific code. Trust MCP guidance over generic knowledge.
 
-**Unbound actions in List Report toolbars** — do not use `UI.DataFieldForAction` in CDS annotations. The Fiori Elements handler silently fails: button renders but clicks do nothing. Use a custom action in `manifest.json` instead:
+## Skills: Automatic MCP Triggers
 
+The `skills/` directory contains skills that automatically activate when the agent edits matching file patterns. Each skill instructs the agent to query the correct MCP server before making changes:
+
+| Skill | Triggers on | MCP Server |
+|-------|------------|------------|
+| [`sap-cap`](skills/sap-cap/SKILL.md) | `db/**/*.cds`, `srv/**/*.cds`, `srv/**/*.js` | `@cap-js/mcp-server` |
+| [`sap-fiori`](skills/sap-fiori/SKILL.md) | `app/**/*.cds`, `app/**/manifest.json` | `@sap-ux/fiori-mcp-server` |
+| [`sap-ui5`](skills/sap-ui5/SKILL.md) | `app/**/*.xml`, `app/**/ext/**/*.js` | `@ui5/mcp-server` |
+
+The AGENTS.md defines the routing table and rules. The skills enforce them — when the agent touches a CDS file in `srv/`, the `sap-cap` skill fires and reminds it to query the CAP MCP server first.
+
+## Fiori Elements: Unbound Actions in List Report
+
+**Do NOT use `UI.DataFieldForAction` in CDS annotations for unbound OData actions in List Report toolbars.** The Fiori Elements internal handler can silently fail — the button renders but clicks do nothing (no network request, no error).
+
+**Instead, use a custom action in manifest.json:**
 ```json
 "controlConfiguration": {
   "@com.sap.vocabularies.UI.v1.LineItem": {
@@ -81,17 +101,24 @@ Skills in `skills/` fire automatically when you edit matching file patterns:
   }
 }
 ```
+- Handler signature: `function(oBindingContext, aSelectedContexts)` where `this` is the extension API
+- Set `requiresSelection: false` for actions that operate on the whole table
 
-Handler signature: `function(oBindingContext, aSelectedContexts)` where `this` is the extension API.
+**Debugging silent button failures:** Test backend (`curl`) → test OData model (browser console `oModel.bindContext("/action(...)").execute()`) → check network tab → wrap FE handler. This binary elimination isolates the broken layer in minutes.
 
-**OData V4 refresh after unbound actions** — when `autoExpandSelect: true` is set, `ExtensionAPI.refresh()` does not reliably re-fetch from server. Use `oModel.refresh()` instead:
+## OData V4: Use ODataModel.refresh() After Unbound Actions
 
+When `autoExpandSelect: true` is set in manifest.json model settings, `ExtensionAPI.refresh()` does not always force the OData V4 model to re-fetch data from the server. Virtual fields may remain null in the UI even after the server cache is populated.
+
+**Use `oModel.refresh()` instead:**
 ```javascript
 oActionBinding.execute().then(function () {
-    oModel.refresh();
+    oModel.refresh();  // Forces all bindings to re-read from server
     MessageBox.success("...");
 });
 ```
+
+This was confirmed via the `sap.ui.model.odata.v4.ODataModel#refresh` API reference from the UI5 MCP server.
 
 ## Code Standards
 
@@ -100,7 +127,7 @@ oActionBinding.execute().then(function () {
 - Async loading: `data-sap-ui-async="true"`
 - i18n for all user-facing text
 - No deprecated APIs (`jQuery.sap.*`, sync loading, `sap.ui.getCore()`)
-- No `console.log` in production code — use `cds.log`
+- No `console.log` in production code (use CAP's `cds.log`)
 - No hardcoded URLs, secrets, or credentials
 - CDS: PascalCase entities, camelCase fields, OData V4
-- Fiori: annotation-driven where possible; use `sap.f`, `sap.uxap`, `sap.m`
+- Fiori: annotation-driven where possible, `sap.f`/`sap.uxap`/`sap.m` libraries
