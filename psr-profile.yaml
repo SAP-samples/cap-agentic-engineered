@@ -1,0 +1,19 @@
+deliveryMode:
+  cloud: true
+  onPremise: false
+  mobile: false
+  partnerManagedCloud: false
+lifecyclePhase:
+  release: true
+  beta: false
+  maintenance: false
+  sunset: false
+commercialization:
+  commercialized: true
+  non-commercial: false
+  custom-development: false
+  non-productive: false
+  vendorBrandedReseller: false
+hasGUI: true
+hasDataStore: true
+usesAI: false
